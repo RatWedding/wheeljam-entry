@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqq6ylo0erfoq"]
+
+[ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://Wheel/wheel.tscn" id="1_yh5la"]
+[ext_resource type="PackedScene" uid="uid://cruqx2jfg84p5" path="res://Enemies/enemy_base.tscn" id="2_2w1kt"]
+
+[node name="Main" type="Node"]
+
+[node name="PlayerHolder" type="Node" parent="."]
+
+[node name="Wheel" parent="PlayerHolder" instance=ExtResource("1_yh5la")]
+unique_name_in_owner = true
+
+[node name="UIHolder" type="Node" parent="."]
+
+[node name="EnemyHolder" type="Node" parent="."]
+
+[node name="SpawnPoint" type="Node2D" parent="EnemyHolder"]
+position = Vector2(957, 202)
+
+[node name="Enemy_Base" parent="EnemyHolder/SpawnPoint" instance=ExtResource("2_2w1kt")]
+
+[node name="SpawnPoint2" type="Node2D" parent="EnemyHolder"]
+position = Vector2(957, 482)
+
+[node name="SpawnPoint3" type="Node2D" parent="EnemyHolder"]
+position = Vector2(783, 269)
+
+[node name="SpawnPoint4" type="Node2D" parent="EnemyHolder"]
+position = Vector2(791, 448)
+
+[node name="SpawnPoint5" type="Node2D" parent="EnemyHolder"]
+position = Vector2(957, 351.96)
