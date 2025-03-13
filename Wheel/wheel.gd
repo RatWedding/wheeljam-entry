@@ -137,6 +137,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 func process_direction_input(direction:int)->void:
 	if _state != WheelState.AWAITING_SELECTION: return
 	selector.rotation_degrees = direction #move our selector to the direction
+
 	_current_value = get_current_wheel_value() #set the current wheel value to our slice and base values
 	new_dir_selected.emit() # emit signal that we have moved the selector
 
@@ -172,6 +173,7 @@ func reset()->void:
 	selector.rotation_degrees = 0 # remove this if you don't want the selector to reset up every time
 	slice_gimbal.rotation_degrees = 0 
 	num_selections = 0 
+	current_direction = 0
 	for x:Control in covers: x.visible = false # hides the covers
 
 	current_value_mappings.shuffle() # chooses a random order for our value mappings
@@ -190,6 +192,7 @@ func end_check()->void:
 	if num_selections == target_selections:
 		_state = WheelState.NO_INPUT
 		puzzle_finished.emit()
+		reset()
 	else:
 		_state = WheelState.AWAITING_SELECTION
 
