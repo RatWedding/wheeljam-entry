@@ -14,7 +14,11 @@ texture_filter = 1
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 250.0
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_jnbfk")
+wheel_scale = 0.8
 slice_textures = Array[Texture2D]([ExtResource("2_hflln"), ExtResource("3_tc8cr"), ExtResource("4_lnuxd"), ExtResource("5_w8unc")])
 underlay_texture = ExtResource("6_cgp5b")
 overlay_texture = ExtResource("7_kuksd")
@@ -52,7 +56,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 4.71239
+rotation = 3.14159
 pivot_offset = Vector2(128, 128)
 texture = ExtResource("2_hflln")
 
@@ -71,7 +75,6 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 3.14159
 pivot_offset = Vector2(128, 128)
 texture = ExtResource("3_tc8cr")
 
@@ -90,7 +93,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 1.5708
+rotation = 4.71239
 pivot_offset = Vector2(128, 128)
 texture = ExtResource("4_lnuxd")
 
@@ -109,6 +112,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
 pivot_offset = Vector2(128, 128)
 texture = ExtResource("5_w8unc")
 

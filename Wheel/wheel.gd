@@ -192,7 +192,7 @@ func end_check()->void:
 	if num_selections == target_selections:
 		_state = WheelState.NO_INPUT
 		puzzle_finished.emit()
-		reset()
+		#reset() #reset done by player.
 	else:
 		_state = WheelState.AWAITING_SELECTION
 
