@@ -1,25 +1,37 @@
 @tool class_name Enemy
-extends Node2D 
+#TODO fix endcheck to play correct aniation and sound when dying or taking damage, await until animation finished and play idle
+extends Node3D 
 @onready var wheel:Wheel = %Wheel
-@onready var  selector:Control = wheel.find_child("selector") #variable for the selector, used in determining what state to show depedning on base values
+@onready var player:Node3D = %WheelJamHero
+@onready var selector = wheel.find_child("selector")
+ #variable for the selector, used in determining what state to show depedning on base values
 @export var base_numbers:Array[int] = [-2,-1,1,2]
 var total_value:int  #stores wheel values 
 var select_sound:AudioStream = preload("uid://cxg4q58es2u77")
+var hurt_sound:AudioStream = preload("uid://tij2t4x8snb7")
+var heal_sound:AudioStream = preload("uid://dmrf2ma7j0uam")
+var death_sound:AudioStream = preload("uid://bdohayyimsato")
 var rotate_sound:AudioStream = preload("uid://c43qhby2kqxxj")
 var health:int= 10
 var max_health:int = 10 #max health
 var damage:int # damage enemy would deal
-var sprite:Texture2D = load("uid://daf1bsgp2pj46") #sprite for character
+
+@export var model: = load("uid://bnw80nbdrql73") #model for character
+
 func _ready():
+	hover()
+	add_child(model.instantiate())
 	# connects the new dir chosen signal to a lambda function that plays the selector sound 
+	var animation =  get_child(-1).find_child("AnimationPlayer") # gets animation player. Getchild is used instead of accessing by unique name because we are going to swap out model
+	animation.play("WizardIdle")
 	wheel.new_dir_selected.connect(func():if wheel.num_selections != wheel.target_selections: _play_sound(select_sound))
 	wheel.new_dir_selected.connect(hover)
 	# connects our new dir chosen signal to the update wheel value function
 	wheel.new_dir_chosen.connect(update_wheel_value)
 	# connects the dir confirmed signal to a lambda function that plays the confirm sound
 	wheel.rotation_started.connect(func():_play_sound(rotate_sound))
-	wheel.puzzle_finished.connect(end_check)
-	$Sprite2D.texture = sprite
+	#wheel.puzzle_finished.connect(end_check) taken over by player,
+	player.attack.connect(end_check)
 func _play_sound(sound:AudioStream)->void:
 	randomize()
 	var player = AudioStreamPlayer.new()
@@ -28,11 +40,11 @@ func _play_sound(sound:AudioStream)->void:
 	self.add_child(player)
 	player.play()
 	player.finished.connect(func():player.queue_free())
-func update_wheel_value(wp):
+func update_wheel_value(wp): #does the math when value is confirmed 
 
 	match wheel.current_direction:
 		0:
-
+			
 			total_value += base_numbers[0] * wp.slice_value
 
 		90:
@@ -47,9 +59,30 @@ func update_wheel_value(wp):
 
 			total_value += base_numbers[3] * wp.slice_value
 func end_check(): #after the puzzle is finished it takes damage
+	var animation =  get_child(-1).find_child("AnimationPlayer")
+
+
 	health = clamp(health-total_value, 0, max_health)
-	if health == 0: #if its at 0 health it dies
+	
+	
+	if health > 0:
+		if total_value <= 0: 
+			_play_sound(heal_sound)
+			animation.play("WizardYay")
+			await animation.animation_finished
+			animation.play("WizardIdle")
+		else:
+			_play_sound(hurt_sound)
+			animation.play("WizardOof")
+			await animation.animation_finished
+			animation.play("WizardIdle")
+	else: #if its at 0 health it dies
+		_play_sound(death_sound)
+		animation.play("WizardOof")
+		await animation.animation_finished
 		queue_free() 
+	
+	
 	total_value = 0  #resets total value between puzzles
 	
 func hover(): #system to show base values 

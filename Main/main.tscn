@@ -1,32 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqq6ylo0erfoq"]
+[gd_scene load_steps=9 format=3 uid="uid://dqq6ylo0erfoq"]
 
 [ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://Wheel/wheel.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://cruqx2jfg84p5" path="res://Enemies/enemy_base.tscn" id="2_2w1kt"]
+[ext_resource type="PackedScene" uid="uid://b0r0rwy2dsnqs" path="res://Player/wheel_jam_hero.tscn" id="2_qvhan"]
+[ext_resource type="PackedScene" uid="uid://bchduundxcr45" path="res://World/temp_env.tscn" id="3_eunhr"]
+[ext_resource type="PackedScene" uid="uid://bnw80nbdrql73" path="res://Enemies/Modelglb/tempenemy.tscn" id="5_k3v36"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_liyct"]
+sky_top_color = Color(0.446754, 0.185271, 0.331104, 1)
+sky_horizon_color = Color(0.516039, 0.438176, 0.476331, 1)
+ground_bottom_color = Color(0.209792, 0.15982, 0.166609, 1)
+ground_horizon_color = Color(0.516039, 0.438176, 0.476331, 1)
+
+[sub_resource type="Sky" id="Sky_ib3t1"]
+sky_material = SubResource("ProceduralSkyMaterial_liyct")
+
+[sub_resource type="Environment" id="Environment_f6fdm"]
+background_mode = 2
+sky = SubResource("Sky_ib3t1")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f6fdm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="PlayerHolder" type="Node" parent="."]
 
 [node name="Wheel" parent="PlayerHolder" instance=ExtResource("1_yh5la")]
 unique_name_in_owner = true
+offset_right = 300.0
+offset_bottom = 300.0
+
+[node name="WheelJamHero" parent="PlayerHolder" instance=ExtResource("2_qvhan")]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.10375, 0.511487, 3.61524)
 
 [node name="UIHolder" type="Node" parent="."]
 
 [node name="EnemyHolder" type="Node" parent="."]
 
-[node name="SpawnPoint" type="Node2D" parent="EnemyHolder"]
-position = Vector2(957, 202)
+[node name="SpawnPoint1" type="Marker3D" parent="EnemyHolder"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.17, 0.546458, 3.858)
 
-[node name="Enemy_Base" parent="EnemyHolder/SpawnPoint" instance=ExtResource("2_2w1kt")]
+[node name="Enemy_Base" parent="EnemyHolder/SpawnPoint1" instance=ExtResource("2_2w1kt")]
+model = ExtResource("5_k3v36")
 
-[node name="SpawnPoint2" type="Node2D" parent="EnemyHolder"]
-position = Vector2(957, 482)
+[node name="SpawnPoint2" type="Marker3D" parent="EnemyHolder"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.173, 0.546458, 6.863)
 
-[node name="SpawnPoint3" type="Node2D" parent="EnemyHolder"]
-position = Vector2(783, 269)
+[node name="SpawnPoint3" type="Marker3D" parent="EnemyHolder"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.173, 0.546458, 0.328)
 
-[node name="SpawnPoint4" type="Node2D" parent="EnemyHolder"]
-position = Vector2(791, 448)
+[node name="SpawnPoint4" type="Marker3D" parent="EnemyHolder"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, 0.546458, 5.288)
 
-[node name="SpawnPoint5" type="Node2D" parent="EnemyHolder"]
-position = Vector2(957, 351.96)
+[node name="SpawnPoint5" type="Marker3D" parent="EnemyHolder"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, 0.546458, 1.873)
+
+[node name="AttackTimer" type="Timer" parent="EnemyHolder"]
+wait_time = 10.0
+
+[node name="WorldHolder" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="WorldHolder"]
+transform = Transform3D(1, 0, 0, 0, 0.915227, 0.402938, 0, -0.402938, 0.915227, 0, 5.50602, 11.4293)
+
+[node name="tempEnv" parent="WorldHolder" instance=ExtResource("3_eunhr")]
