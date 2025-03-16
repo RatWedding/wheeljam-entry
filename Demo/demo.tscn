@@ -401,7 +401,7 @@ offset_right = 268.0
 offset_bottom = 434.0
 text = "Restart"
 script = ExtResource("9_qlm07")
-game_nav = 1
+game_nav = 3
 
 [node name="Menu" type="Button" parent="game_overs/EndGameButtons"]
 layout_mode = 0
