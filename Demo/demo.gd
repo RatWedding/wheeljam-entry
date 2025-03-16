@@ -75,19 +75,19 @@ func update_text()->void:
 	$"text/base values".text = bases
 	$"text/slice multipliers".text = slice_multipliers
 	
-# toggles our visible olive picture and background color to indicate base values
+# toggles our visible value picture and background color to indicate base values
 func show_value(base_value)->void:
 	var b = wheel._current_value.base_value
-	var olives = $values.get_children()
+	var values = $values.get_children()
 	var colors = $colors.get_children()
 	# this assumes that the colors and the values have children in the same order
 	# with the same names.
-	for x in olives.size():
-		if olives[x].name == str(b):
-			olives[x].visible = true
+	for x in values.size():
+		if values[x].name == str(b):
+			values[x].visible = true
 			colors[x].visible = true
 		else:
-			olives[x].visible = false
+			values[x].visible = false
 			colors[x].visible = false
 			
 #endregion
