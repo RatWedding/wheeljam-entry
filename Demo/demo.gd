@@ -5,6 +5,7 @@ extends Control
 
 #region Onready Variables
 @onready var wheel:Wheel = $Wheel
+@onready var end_game_buttons = $game_overs/EndGameButtons
 #endregion
 
 #region Internal Variables
@@ -32,7 +33,9 @@ func _ready():
 	_play_music(background_music)
 
 func _process(_delta: float) -> void:
-	if game_over: return
+	if game_over:
+		end_game_buttons.visible = true
+		return
 	
 	update_text()
 	show_value(wheel._current_value.base_value)
