@@ -5,8 +5,15 @@
 
 [node name="Enemy1" type="Node3D"]
 script = ExtResource("1_vy3xu")
+base_numbers = null
+select_sound = null
+hurt_sound = null
+heal_sound = null
+death_sound = null
+rotate_sound = null
 health = 20
 max_health = 20
+damage = null
 model = ExtResource("2_4cuqr")
 
 [node name="TempLabel" type="Label3D" parent="."]

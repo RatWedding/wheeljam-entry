@@ -1894,7 +1894,7 @@ bones/39/rotation = Quaternion(0.368291, 0.555282, -0.741581, -0.0779802)
 bones/39/scale = Vector3(1, 1, 1)
 
 [node name="WizardFaceAngy" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(0.206607, -0.0747882, 3.26912e-09, 1.11115e-08, -3.33243e-08, -0.219726, 0.0747882, 0.206606, 1.71623e-08, -0.142991, 0.926977, 0.395022)
+transform = Transform3D(0.206606, -0.0747882, 3.26912e-09, -5.55569e-09, 2.25537e-09, -0.219726, 0.0747882, 0.206606, -2.21277e-08, -0.142991, 0.926977, 0.395022)
 bone_name = "WizardFaceAngy"
 bone_idx = 11
 
@@ -1903,7 +1903,7 @@ mesh = SubResource("ArrayMesh_43lei")
 skeleton = NodePath("")
 
 [node name="WizardFaceOof" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 6.55651e-07, 1.09584, 1.61071e-07)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 7.15256e-07, 1.09584, 3.06895e-07)
 bone_name = "WizardFaceOof"
 bone_idx = 13
 
@@ -1912,7 +1912,7 @@ mesh = SubResource("ArrayMesh_7w4bv")
 skeleton = NodePath("")
 
 [node name="WizardFaceYay" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 6.55651e-07, 1.09584, 1.61071e-07)
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 7.15256e-07, 1.09584, 3.06895e-07)
 bone_name = "WizardFaceYay"
 bone_idx = 15
 

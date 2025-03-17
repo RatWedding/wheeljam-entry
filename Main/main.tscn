@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqq6ylo0erfoq"]
+[gd_scene load_steps=13 format=3 uid="uid://dqq6ylo0erfoq"]
 
 [ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://Wheel/wheel.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://b0r0rwy2dsnqs" path="res://Player/wheel_jam_hero.tscn" id="2_qvhan"]
 [ext_resource type="PackedScene" uid="uid://bchduundxcr45" path="res://World/temp_env.tscn" id="3_eunhr"]
+[ext_resource type="PackedScene" uid="uid://cruqx2jfg84p5" path="res://Enemies/enemy_base.tscn" id="3_k3v36"]
+[ext_resource type="AudioStream" uid="uid://cxg4q58es2u77" path="res://Demo/assets/selector_click.wav" id="4_rj11h"]
+[ext_resource type="AudioStream" uid="uid://tij2t4x8snb7" path="res://Sounds/temp/laser gun 16.wav" id="5_qac2q"]
+[ext_resource type="AudioStream" uid="uid://dmrf2ma7j0uam" path="res://Sounds/temp/laser gun 8.wav" id="6_o60nc"]
+[ext_resource type="AudioStream" uid="uid://bdohayyimsato" path="res://Sounds/temp/scream 2.wav" id="7_f3gf5"]
+[ext_resource type="AudioStream" uid="uid://c43qhby2kqxxj" path="res://Demo/assets/rotate.wav" id="8_rix8b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_liyct"]
 sky_top_color = Color(0.446754, 0.185271, 0.331104, 1)
@@ -25,14 +31,13 @@ glow_enabled = true
 
 [node name="Wheel" parent="PlayerHolder" instance=ExtResource("1_yh5la")]
 unique_name_in_owner = true
-visible = false
 offset_right = 300.0
 offset_bottom = 300.0
+metadata/_edit_use_anchors_ = true
 
 [node name="WheelJamHero" parent="PlayerHolder" instance=ExtResource("2_qvhan")]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.10375, 0.511487, 3.61524)
-visible = false
 
 [node name="UIHolder" type="Node" parent="."]
 
@@ -40,6 +45,13 @@ visible = false
 
 [node name="SpawnPoint1" type="Marker3D" parent="EnemyHolder"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.17, 0.546458, 3.858)
+
+[node name="Enemy_Base" parent="EnemyHolder/SpawnPoint1" instance=ExtResource("3_k3v36")]
+select_sound = ExtResource("4_rj11h")
+hurt_sound = ExtResource("5_qac2q")
+heal_sound = ExtResource("6_o60nc")
+death_sound = ExtResource("7_f3gf5")
+rotate_sound = ExtResource("8_rix8b")
 
 [node name="SpawnPoint2" type="Marker3D" parent="EnemyHolder"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.173, 0.546458, 6.863)

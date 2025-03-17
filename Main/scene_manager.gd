@@ -18,7 +18,7 @@ func enter_scene(scene_id):
 			get_tree().get_root().get_child(-1).get_child(0).find_child("Wheel").set_deferred("visible", true)
 			get_tree().get_root().get_child(-1).get_child(0).find_child("Wheel").reset()
 			get_tree().get_root().get_child(-1).get_child(0).find_child("WheelJamHero").set_deferred("visible", true)
-			level_process(0)
+
 			#makes wheel and player visible as well as start the wheel
 			
 func exit_scene(scene_id):
@@ -29,14 +29,14 @@ func exit_scene(scene_id):
 		1:
 			pass
 
-func level_process(level):
-	print(level % 5)
-	match (level % 5):
-		0: #level 0,5, etc
-			var enemy_holder = get_tree().get_root().get_child(-1).get_child(2)
-			var enemy_1 = load("uid://3jnhd5p0dc3x") #uid for enemy 1
-			var enemies = [enemy_1.instantiate()]
-			for i in enemies.size():
-				for j in 4:
-					if enemy_holder.get_child(j).get_child_count() < 1:
-						enemy_holder.get_child(j).add_child(enemies[i]) #this should add a child to every spawnpoint
+#func level_process(level):
+	#print(level % 5)
+	#match (level % 5):
+		#0: #level 0,5, etc
+			#var enemy_holder = get_tree().get_root().get_child(-1).get_child(2)
+			#var enemy_1 = load("uid://3jnhd5p0dc3x") #uid for enemy 1
+			#var enemies = [enemy_1.instantiate()]
+			#for i in enemies.size():
+				#for j in 4:
+					#if enemy_holder.get_child(j).get_child_count() < 1:
+						#enemy_holder.get_child(j).add_child(enemies[i]) #this should add a child to every spawnpoint

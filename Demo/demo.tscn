@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://datidcn0h5ha3"]
+[gd_scene load_steps=9 format=3 uid="uid://datidcn0h5ha3"]
 
 [ext_resource type="Script" uid="uid://b4bons6nwdkyv" path="res://Demo/demo.gd" id="1_7do3a"]
 [ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://Wheel/wheel.tscn" id="1_yl2td"]
 [ext_resource type="Texture2D" uid="uid://1cl1src28wao" path="res://Demo/assets/2.png" id="3_4ax5b"]
-[ext_resource type="Texture2D" uid="uid://l77pyommmo3y" path="res://1.png" id="4_wb6yf"]
+[ext_resource type="Texture2D" uid="uid://l77pyommmo3y" path="res://Demo/assets/1.png" id="4_wb6yf"]
 [ext_resource type="Texture2D" uid="uid://d01rvjco1og2l" path="res://Demo/assets/-1.png" id="5_3x7gt"]
 [ext_resource type="Texture2D" uid="uid://bm4k7jllmeuqs" path="res://Demo/assets/-2.png" id="6_abb3s"]
 [ext_resource type="Texture2D" uid="uid://dblq8a5cs8ckf" path="res://Demo/assets/pass.jpg" id="7_12pv5"]
 [ext_resource type="Texture2D" uid="uid://bgpcoe8bbgxfs" path="res://Demo/assets/fail.jpg" id="8_kwgq4"]
-[ext_resource type="Script" uid="uid://waxwwotopjbl" path="res://game_nav.gd" id="9_qlm07"]
 
 [node name="Demo" type="Control"]
 layout_mode = 3
@@ -384,33 +383,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_kwgq4")
 expand_mode = 1
-
-[node name="EndGameButtons" type="Control" parent="game_overs"]
-visible = false
-anchors_preset = 0
-offset_left = 318.0
-offset_top = 179.0
-offset_right = 358.0
-offset_bottom = 219.0
-
-[node name="Restart" type="Button" parent="game_overs/EndGameButtons"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = 357.0
-offset_right = 268.0
-offset_bottom = 434.0
-text = "Restart"
-script = ExtResource("9_qlm07")
-game_nav = 3
-
-[node name="Menu" type="Button" parent="game_overs/EndGameButtons"]
-layout_mode = 0
-offset_left = 287.0
-offset_top = 354.0
-offset_right = 433.0
-offset_bottom = 437.0
-text = "Menu"
-script = ExtResource("9_qlm07")
 
 [connection signal="toggled" from="text/debug_checkbox" to="." method="_on_debug_checkbox_toggled"]
 [connection signal="toggled" from="text/music_checkbox" to="." method="_on_music_checkbox_toggled"]

@@ -270,6 +270,9 @@ bind/36/name = &"Bone.22"
 bind/36/bone = -1
 bind/36/pose = Transform3D(-1, -8.74228e-08, -1.85125e-29, 2.98023e-08, 3.55272e-15, 1, -2.78181e-08, 1, 2.11758e-22, -0.220992, 6.58608e-09, 0.0252606)
 
+[sub_resource type="Animation" id="Animation_rlyqn"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_uvoqw"]
 resource_name = "WizardAttack"
 length = 1.66667
@@ -1610,9 +1613,6 @@ tracks/30/interp = 0
 tracks/30/loop_wrap = true
 tracks/30/keys = PackedFloat32Array(0, 1, -3.09086e-08, -0.707107, 0.707107, 3.09086e-08, 0.2, 1, -3.09086e-08, -0.707107, 0.707107, 3.09086e-08, 0.233333, 1, -0.0375763, -0.808451, 0.587342, 0.00496171, 0.4, 1, -0.0375763, -0.808451, 0.587342, 0.00496171, 0.433333, 1, -3.09086e-08, -0.707107, 0.707107, 3.09086e-08, 0.6, 1, -3.09086e-08, -0.707107, 0.707107, 3.09086e-08, 0.633333, 1, -0.0763652, -0.894418, 0.440409, 0.0150089, 0.8, 1, -0.0763652, -0.894418, 0.440409, 0.0150089, 0.833333, 1, -3.09086e-08, -0.707107, 0.707107, 3.09086e-08, 1.66667, 1, -3.09086e-08, -0.707107, 0.707107, 3.09086e-08)
 
-[sub_resource type="Animation" id="Animation_rlyqn"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ickle"]
 _data = {
 &"RESET": SubResource("Animation_rlyqn"),
@@ -1916,7 +1916,7 @@ bones/39/rotation = Quaternion(0.368291, 0.555282, -0.741581, -0.0779802)
 bones/39/scale = Vector3(1, 1, 1)
 
 [node name="WizardFaceAngy" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(0.185165, -0.0935243, 0.0724345, 0.0856795, 0.0132637, -0.201898, 0.0815633, 0.198386, 0.0476461, -0.372001, 0.896426, -0.0964991)
+transform = Transform3D(0.185165, -0.093524, 0.0724343, 0.0856794, 0.0132639, -0.201898, 0.081563, 0.198386, 0.0476462, -0.372, 0.896426, -0.0964993)
 bone_name = "WizardFaceAngy"
 bone_idx = 11
 
