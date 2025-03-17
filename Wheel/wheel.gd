@@ -90,7 +90,9 @@ enum TweenType {
 #endregion
 
 #region Internal Variables
+var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 var base_numbers:Array[int] = [-2,-1,1,2] ## base score values for the slices
+var group_numbers: Dictionary
 var slice_values:Array[int] = [1,2,3,4] ## slice value multiplier
 var current_value_mappings:Array[int] = [0,90,180,270] ## assigns values to directions; format is as follows: [UP,RIGHT,DOWN,LEFT]
 enum WheelState {AWAITING_SELECTION,ROTATING,NO_INPUT} ## enum dictating current state of wheel.
@@ -170,7 +172,7 @@ func rotate_slices()->void:
 
 ## this function resets the minigame.
 func reset()->void:
-	randomize() # ensures that godot will randomize the shuffle of the mappings
+	rng.randomize() # ensures that godot will randomize the shuffle of the mappings
 	selector.rotation_degrees = 0 # remove this if you don't want the selector to reset up every time
 	slice_gimbal.rotation_degrees = 0 
 	num_selections = 0 
@@ -183,8 +185,13 @@ func reset()->void:
 			slices[j].rotation_degrees = current_value_mappings[j]  # sets the slice rotations to our value mappings
 			if DIRECTIONS[x] == current_value_mappings[j]:
 				slice_values[x] = x+1
-
-	base_numbers.shuffle() # shuffles base numbers so random wheel segments = a random base number
+	
+	var group_size := randi_range(1, 5)
+	for i in range(group_size):
+		base_numbers.shuffle() # shuffles base numbers so random wheel segments = a random base number
+		group_numbers[i] = []
+		for j in base_numbers:
+			group_numbers[i].append(base_numbers[j])
 	_current_value = get_current_wheel_value() 
 	_state = WheelState.AWAITING_SELECTION 
 

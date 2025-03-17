@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="WheelJam"
+run/main_scene="uid://datidcn0h5ha3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SceneManager="*res://Main/scene_manager.gd"
+
+LevelManager="*res://level_manager.gd"
+
+

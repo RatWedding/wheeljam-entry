@@ -6,6 +6,10 @@ extends Control
 #region Onready Variables
 @onready var wheel:Wheel = $Wheel
 
+@onready var end_game_buttons = $game_overs/EndGameButtons
+
+
+
 #endregion
 
 #region Internal Variables
@@ -17,12 +21,18 @@ var fail_sound:AudioStream = preload("uid://pcg4xnx3rd1t")
 var current_wheel_value:int = 0
 var bg_msc:AudioStreamPlayer
 
-var game_over = false
+var game_over:bool = false
+var NUMBER_OF_ENEMIES:int = 0
+var enemy_number:int = 0
+
 
 #endregion
 
 #region Built-In Functions
 func _ready():
+	for key in wheel.group_numbers:
+		NUMBER_OF_ENEMIES += 1
+	print(wheel.group_numbers)
 	# connects the new dir chosen signal to a lambda function that plays the selector sound 
 	wheel.new_dir_selected.connect(func():if wheel.num_selections != wheel.target_selections: _play_sound(select_sound))
 	# connects our new dir chosen signal to the update wheel value function
@@ -33,7 +43,14 @@ func _ready():
 	_play_music(background_music)
 
 func _process(_delta: float) -> void:
-	if game_over: return
+	if game_over:
+		end_game_buttons.visible = true
+		return
+	
+	if Input.is_action_just_pressed("ui_text_delete"):
+		enemy_number += 1
+		enemy_number %= NUMBER_OF_ENEMIES
+		update_text()
 	
 	update_text()
 	show_value(wheel._current_value.base_value)
@@ -63,7 +80,7 @@ func update_text()->void:
 	var slice = "Slice Value: "+str(wheel._current_value.slice_value)
 	var base = "Base Value: "+str(wheel._current_value.base_value)
 	var selections = "Number of Selections: "+str(wheel.num_selections)
-	var bases = "Base Values: "+str(wheel.base_numbers)
+	var bases = "Base Values: "+str(wheel.group_numbers[enemy_number])
 	var value_mappings = "Value Mappings: "+str(wheel.current_value_mappings)
 	var slice_multipliers = "Slice Multipliers: "+str(wheel.slice_values)
 	$"text/wheel value".text = "Wheel value: "+str(current_wheel_value)
@@ -74,19 +91,19 @@ func update_text()->void:
 	$"text/base values".text = bases
 	$"text/slice multipliers".text = slice_multipliers
 	
-# toggles our visible olive picture and background color to indicate base values
+# toggles our visible value picture and background color to indicate base values
 func show_value(base_value)->void:
 	var b = wheel._current_value.base_value
-	var olives = $values.get_children()
+	var values = $values.get_children()
 	var colors = $colors.get_children()
 	# this assumes that the colors and the values have children in the same order
 	# with the same names.
-	for x in olives.size():
-		if olives[x].name == str(b):
-			olives[x].visible = true
+	for x in values.size():
+		if values[x].name == str(b):
+			values[x].visible = true
 			colors[x].visible = true
 		else:
-			olives[x].visible = false
+			values[x].visible = false
 			colors[x].visible = false
 			
 #endregion
