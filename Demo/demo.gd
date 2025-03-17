@@ -5,7 +5,11 @@ extends Control
 
 #region Onready Variables
 @onready var wheel:Wheel = $Wheel
+
 @onready var end_game_buttons = $game_overs/EndGameButtons
+
+
+
 #endregion
 
 #region Internal Variables
@@ -57,6 +61,7 @@ func _process(_delta: float) -> void:
 #region Custom Functions
 # the new_dir_chosen signal passes the current wheel value of the chosen segment
 func update_wheel_value(_current_value):
+	
 	current_wheel_value += _current_value.total_value
 
 # shows pass or fail UI if the wheel value is > or < 0

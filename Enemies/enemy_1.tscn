@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://3jnhd5p0dc3x"]
+
+[ext_resource type="Script" uid="uid://c2n6lkoqk72l5" path="res://Enemies/enemy_1.gd" id="1_vy3xu"]
+[ext_resource type="PackedScene" uid="uid://bnw80nbdrql73" path="res://Enemies/Modelglb/tempenemy.tscn" id="2_4cuqr"]
+
+[node name="Enemy1" type="Node3D"]
+script = ExtResource("1_vy3xu")
+health = 20
+max_health = 20
+model = ExtResource("2_4cuqr")
+
+[node name="TempLabel" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.80574, 0)
+text = "awfwasfawf"
