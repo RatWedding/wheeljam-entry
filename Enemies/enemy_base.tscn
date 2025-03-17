@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cruqx2jfg84p5"]
+[gd_scene load_steps=3 format=3 uid="uid://cruqx2jfg84p5"]
 
 [ext_resource type="Script" uid="uid://p6mxiblse6p6" path="res://Enemies/Enemy_base.gd" id="1_8xqx4"]
+[ext_resource type="PackedScene" uid="uid://bnw80nbdrql73" path="res://Enemies/Modelglb/tempenemy.tscn" id="2_gk4pb"]
 
 [node name="Enemy_Base" type="Node3D"]
 script = ExtResource("1_8xqx4")
+base_numbers = Array[int]([])
+select_sound = null
+hurt_sound = null
+heal_sound = null
+death_sound = null
+rotate_sound = null
+health = 0
+max_health = 0
+damage = 3
+model = ExtResource("2_gk4pb")
 
 [node name="TempLabel" type="Label3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.80574, 0)

@@ -105,7 +105,8 @@ var target_selections:int = 4 ## how many selections are allowed; default is 4.
 #region Built-In Functions
 #called when the scene is loaded into the tree
 func _ready()->void:
-	reset() # all the setup is contained in reset
+	#reset() # all the setup is contained in reset
+	#reset disabled so that it can be controlled later
 	rotation_finished.connect(end_check) # check if puzzle is completed when rotation is done
 
 # handles input for our minigame

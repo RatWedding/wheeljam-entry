@@ -1,24 +1,25 @@
 @tool class_name Enemy
-#TODO fix endcheck to play correct aniation and sound when dying or taking damage, await until animation finished and play idle
-extends Node3D 
-@onready var wheel:Wheel = %Wheel
+
+extends Node3D  
+@onready var wheel:Wheel = %Wheel #accesss as uynique name doesnt work when node is generated with code
 @onready var player:Node3D = %WheelJamHero
-@onready var selector = wheel.find_child("selector")
+var selector = wheel.find_child("selector")
  #variable for the selector, used in determining what state to show depedning on base values
 @export var base_numbers:Array[int] = [-2,-1,1,2]
 var total_value:int  #stores wheel values 
-var select_sound:AudioStream = preload("uid://cxg4q58es2u77")
-var hurt_sound:AudioStream = preload("uid://tij2t4x8snb7")
-var heal_sound:AudioStream = preload("uid://dmrf2ma7j0uam")
-var death_sound:AudioStream = preload("uid://bdohayyimsato")
-var rotate_sound:AudioStream = preload("uid://c43qhby2kqxxj")
-var health:int= 10
-var max_health:int = 10 #max health
-var damage:int # damage enemy would deal
+@export var select_sound:AudioStream = preload("uid://cxg4q58es2u77")
+@export var hurt_sound:AudioStream = preload("uid://tij2t4x8snb7")
+@export var heal_sound:AudioStream = preload("uid://dmrf2ma7j0uam")
+@export var death_sound:AudioStream = preload("uid://bdohayyimsato")
+@export var rotate_sound:AudioStream = preload("uid://c43qhby2kqxxj")
+@export var health:int= 10
+@export var max_health:int = 10 #max health
+@export var damage:int = 1 # damage enemy would deal
 
-@export var model: = load("uid://bnw80nbdrql73") #model for character
+@export var model:Resource = load("uid://bnw80nbdrql73") #model for character
 
 func _ready():
+
 	hover()
 	add_child(model.instantiate())
 	# connects the new dir chosen signal to a lambda function that plays the selector sound 

@@ -1,4 +1,5 @@
 extends Node3D
+
 @onready var wheel:Wheel = %Wheel
 @onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var particle:Resource = load("uid://cegm30aclphpc")
@@ -7,6 +8,9 @@ signal attack #when the puzzle is finished, this signal is sent out. connected b
 ##the damage of the attack is already stored by the enemy due to their resistances.
 signal attack_start
 func _ready():
+
+
+	
 	wheel.puzzle_finished.connect(attacking)
 	animation.play("WizardIdle")
 	
