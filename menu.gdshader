@@ -124,8 +124,8 @@ void fragment() {
 
 
     float sun = sdfCircle(pixelCoords - vec2(
-		100.0-10.0*sin(2.0*TIME + 1.0)+ 20.0*sin(TIME/2.0 + 2.0),
-		100.0-30.0*sin(TIME + 1.0)+ 50.0*sin(2.0*TIME/3.0 + 2.0)),
+		230.0-10.0*sin(2.0*TIME + 1.0)+ 20.0*sin(TIME/2.0 + 2.0),
+		70.0-30.0*sin(TIME + 1.0)+ 50.0*sin(2.0*TIME/3.0 + 2.0)),
 		 4.0);
     //COLOR.rgb = mix(vec3(0.9, 0.85, 0.47), COLOR.rgb, smoothstep(0.0,100.0, sun));
 	COLOR.rgb = mix(vec3(1.0)-vec3(0.7, 0.65, 0.27), COLOR.rgb, smoothstep(0.0,100.0, sun));
