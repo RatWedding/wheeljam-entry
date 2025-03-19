@@ -1,5 +1,5 @@
 extends Button
-
+class_name GameButton
 enum GameNav {MAIN_MENU, FREE_PLAY, STORY, RESTART}
 @export var game_nav : GameNav
 

@@ -1,30 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1tksex2plmy5"]
+[gd_scene load_steps=10 format=3 uid="uid://c1tksex2plmy5"]
 
-[ext_resource type="Script" uid="uid://waxwwotopjbl" path="res://game_nav.gd" id="1_uubjt"]
+[ext_resource type="Shader" uid="uid://cnjej1m5q7l67" path="res://menu.gdshader" id="1_5yleq"]
+[ext_resource type="Theme" uid="uid://dyple42s0a0o4" path="res://ButtonTheme.tres" id="2_ylpcl"]
+[ext_resource type="Script" uid="uid://bahguuf5nbrt1" path="res://MenuButton1.gd" id="3_cx167"]
+[ext_resource type="Script" uid="uid://b6ggqv4cpjx4x" path="res://MenuButton2.gd" id="4_cx167"]
+[ext_resource type="FontFile" uid="uid://cmjnjbo3ma8ev" path="res://Font/SurabanglusNormal-16dv.ttf" id="5_dolsu"]
 
-[node name="Menu" type="Control"]
-layout_mode = 3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylpcl"]
+shader = ExtResource("1_5yleq")
+shader_parameter/xExtent1 = 0.0
+shader_parameter/yExtent1 = 0.0
+shader_parameter/xPos1 = 0.0
+shader_parameter/yPos1 = 0.0
+shader_parameter/xExtent2 = 0.0
+shader_parameter/yExtent2 = 0.0
+shader_parameter/xPos2 = 0.0
+shader_parameter/yPos2 = 0.0
+shader_parameter/button1Hover = false
+shader_parameter/button2Hover = false
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cx167"]
+
+[sub_resource type="Theme" id="Theme_n4eug"]
+default_font_size = 100
+
+[sub_resource type="FontVariation" id="FontVariation_dlksc"]
+base_font = ExtResource("5_dolsu")
+
+[node name="Menu" type="TextureRect"]
+material = SubResource("ShaderMaterial_ylpcl")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("CanvasTexture_cx167")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button1" type="Button" parent="."]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 176.0
-offset_right = 709.0
-offset_bottom = 233.0
+offset_left = 154.0
+offset_top = 221.0
+offset_right = 387.0
+offset_bottom = 317.0
+theme = ExtResource("2_ylpcl")
 text = "Free Play"
-script = ExtResource("1_uubjt")
+icon_alignment = 1
+script = ExtResource("3_cx167")
 game_nav = 1
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 401.0
-offset_top = 284.0
-offset_right = 710.0
-offset_bottom = 341.0
+layout_mode = 0
+offset_left = 179.0
+offset_top = 352.0
+offset_right = 379.0
+offset_bottom = 409.0
+theme = ExtResource("2_ylpcl")
 text = "Story Mode"
-script = ExtResource("1_uubjt")
-game_nav = 2
+script = ExtResource("4_cx167")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 27.0
+offset_right = 549.0
+offset_bottom = 246.0
+theme = SubResource("Theme_n4eug")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("FontVariation_dlksc")
+text = "Wiheelzard"
+horizontal_alignment = 1
