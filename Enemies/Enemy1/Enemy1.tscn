@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=4 uid="uid://bnw80nbdrql73"]
 
-[ext_resource type="Script" uid="uid://p6mxiblse6p6" path="res://Enemies/Enemy1/Enemy_base.gd" id="1_1v2ra"]
+[ext_resource type="Script" uid="uid://p6mxiblse6p6" path="res://Enemies/Enemy1/Enemy_1.gd" id="1_c4luy"]
 [ext_resource type="Texture2D" uid="uid://csrygob8ccg23" path="res://Enemies/Modelglb/WheelJamHero_WizardExpressionsANGY.png" id="1_xi5jc"]
 [ext_resource type="Texture2D" uid="uid://rm53rg64vepx" path="res://Enemies/Modelglb/WheelJamHero_WizardExpressionsOof.png" id="2_822gj"]
 [ext_resource type="Texture2D" uid="uid://dpjrqjwqnmvs8" path="res://Enemies/Modelglb/WheelJamHero_WizardExpressionsYay.png" id="3_xpcd5"]
@@ -1623,7 +1623,7 @@ _data = {
 }
 
 [node name="Enemy1" type="Node3D"]
-script = ExtResource("1_1v2ra")
+script = ExtResource("1_c4luy")
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655089, 0)
