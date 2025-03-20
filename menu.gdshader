@@ -17,9 +17,6 @@ uniform float yPos2 = 0;
 uniform bool button1Hover = false;
 uniform bool button2Hover = false;
 
-const vec3 buttonColor = vec3(1.0, 0.0, 0.0);
-const vec3 hoverColor = vec3(0.0, 0.0, 1.0);
-
 float sdBox( in vec2 p, in vec2 b )
 {
     vec2 d = abs(p)-b;
@@ -137,9 +134,10 @@ void fragment() {
 
 	//float background = sdCircle(pixelCoords - vec2(200,2000), 2000);
 	//COLOR = mix(vec4(GREEN, 1.0), COLOR, step(0, background));
-
+	vec3 buttonColor = vec3(0.3 +0.0125*sin(TIME), 0.0, 0.3+ 0.01*cos(TIME/2.0));
+	vec3 hoverColor = 1.5 * buttonColor;
 	float box1 = sdBox2(pixelCoords - vec2(xPos1, yPos1), vec2(xExtent1, yExtent1));
-	float border1 = sdBox3(pixelCoords - vec2(xPos1, yPos1), vec2(85.0 + 3.0*sin(TIME), 35.0 + 3.0*sin(TIME)));
+	float border1 = sdBox3(pixelCoords - vec2(xPos1, yPos1), vec2(120.0 + 3.0*sin(TIME), 35.0 + 3.0*sin(TIME)));
 	border1 = opOnion(border1, 1);
 	if(!button1Hover){
 		COLOR = mix(vec4(buttonColor, 1.0), COLOR, step(0.0, box1));
@@ -150,7 +148,7 @@ void fragment() {
 	COLOR = mix(vec4(1.0), COLOR, step(0, border1));
 
 	float box2 = sdBox2(pixelCoords - vec2(xPos2, yPos2), vec2(xExtent2, yExtent2));
-	float border2 = sdBox3(pixelCoords - vec2(xPos2, yPos2), vec2(85, 35));
+	float border2 = sdBox3(pixelCoords - vec2(xPos2, yPos2), vec2(120.0 + 3.0*sin(TIME), 35.0 + 3.0*sin(TIME)));
 	border2 = opOnion(border2, 1);
 	if(!button2Hover){
 		COLOR = mix(vec4(buttonColor, 1.0), COLOR, step(0.0, box2));

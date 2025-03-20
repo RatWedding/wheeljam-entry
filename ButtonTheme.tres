@@ -4,6 +4,7 @@
 bg_color = Color(0, 0, 0, 0)
 
 [resource]
+Button/font_sizes/font_size = 32
 Button/styles/disabled = SubResource("StyleBoxFlat_lskjj")
 Button/styles/disabled_mirrored = SubResource("StyleBoxFlat_lskjj")
 Button/styles/focus = SubResource("StyleBoxFlat_lskjj")
