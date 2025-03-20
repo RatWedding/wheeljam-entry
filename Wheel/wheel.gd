@@ -22,6 +22,7 @@ signal rotation_started ## emitted when the gimbal begins to be rotated.
 signal rotation_finished ## emitted when the gimbal is finished rotating.
 signal puzzle_finished ## emitted when the puzzle is complete.
 #endregion
+signal clear_enemy_particles
 
 #region Export Variables
 @export_category("Wheel Cosmetics")
@@ -107,27 +108,30 @@ var target_selections:int = 4 ## how many selections are allowed; default is 4.
 func _ready()->void:
 	reset() # all the setup is contained in reset
 	rotation_finished.connect(end_check) # check if puzzle is completed when rotation is done
-
+	attack_timer.timeout.connect(timeout)
+	LevelManager.attack_over.connect(enemy_attack_over)
+	LevelManager.dead.connect( player_attack) #reuses player attack funciton to disable wheel wheeel
 # handles input for our minigame
 func _unhandled_input(_event: InputEvent) -> void:
 	if _state != WheelState.AWAITING_SELECTION: return
 
-	if Input.is_action_just_pressed("ui_accept"): # ui_accept is spacebar
+	if Input.is_action_just_pressed("confirm"): # ui_accept is spacebar
 		process_confirm_input(current_direction)
-	if Input.is_action_just_pressed("ui_text_completion_replace"):  # ui_text_completion_replace is tab
+	if Input.is_action_just_pressed("spin") and LevelManager.free_spins > 0:  # ui_text_completion_replace is tab
+		LevelManager.free_spins -= 1
 		rotate_slices()
 	
 	# if up, down, left or right is pressed, process that direction input
-	if Input.is_action_just_pressed("ui_up"): 
+	if Input.is_action_just_pressed("up"): 
 		current_direction=0
 		process_direction_input(current_direction)
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("down"):
 		current_direction=180
 		process_direction_input(current_direction)
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("left"):
 		current_direction=270
 		process_direction_input(current_direction)
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("right"):
 		current_direction=90
 		process_direction_input(current_direction)
 #endregion
@@ -189,9 +193,12 @@ func reset()->void:
 
 ## checks if the minigame is finished
 func end_check()->void:
+
+	emit_signal("clear_enemy_particles")#used to clear the hover particles at the moment of the puzzle finishing
 	if num_selections == target_selections:
 		_state = WheelState.NO_INPUT
 		puzzle_finished.emit()
+		attack_timer.paused = true
 		#reset() #reset done by player.
 	else:
 		_state = WheelState.AWAITING_SELECTION
@@ -252,3 +259,22 @@ class WheelPayload:
 	var slice_value:int
 	var total_value:int
 #endregion
+
+
+@onready var attack_timer:Timer = %AttackTimer
+
+
+func timeout():
+	_state = WheelState.NO_INPUT
+	set_deferred("visible", false)
+func enemy_attack_over():
+	_state = WheelState.AWAITING_SELECTION
+	set_deferred("visible", true)
+func player_attack():
+	_state = WheelState.NO_INPUT
+	set_deferred("visible", false)
+func player_attack_over():
+	_state = WheelState.AWAITING_SELECTION
+	set_deferred("visible", true)
+	reset()
+	attack_timer.paused = false

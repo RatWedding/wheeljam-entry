@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://77s7r22n77j1"]
+
+[ext_resource type="Texture2D" uid="uid://dkomglumkv0n8" path="res://particles/pngs/bad.png" id="1_vw0jx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cla7"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_vw0jx")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_uu5yd"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_drf0n"]
+curve = SubResource("Curve_uu5yd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rhq10"]
+emission_shape_offset = Vector3(0, 1, 0)
+gravity = Vector3(0, 9, 0)
+scale_curve = SubResource("CurveTexture_drf0n")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dfqfh"]
+
+[node name="Node3D" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_7cla7")
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_rhq10")
+draw_pass_1 = SubResource("QuadMesh_dfqfh")
