@@ -1,0 +1,166 @@
+[gd_scene load_steps=14 format=3 uid="uid://cbjc8sbpva7d1"]
+
+[ext_resource type="Shader" uid="uid://cnjej1m5q7l67" path="res://menu.gdshader" id="1_5yleq"]
+[ext_resource type="Theme" uid="uid://dyy4y3wogy0hi" path="res://ButtonTheme.tres" id="2_ylpcl"]
+[ext_resource type="Script" uid="uid://bahguuf5nbrt1" path="res://MenuButton1.gd" id="3_cx167"]
+[ext_resource type="FontFile" uid="uid://cmjnjbo3ma8ev" path="res://Font/SurabanglusNormal-16dv.ttf" id="5_dolsu"]
+[ext_resource type="Texture2D" uid="uid://jdgufj4rctpr" path="res://particles/pngs/good.png" id="5_hcwhg"]
+[ext_resource type="Texture2D" uid="uid://d4lj0eb5ojbrl" path="res://particles/pngs/bad.png" id="6_5p1lm"]
+[ext_resource type="Texture2D" uid="uid://ckiyx5yckypqt" path="res://particles/pngs/very_bad.png" id="7_1igrg"]
+[ext_resource type="Texture2D" uid="uid://knqyj84u1v8q" path="res://particles/pngs/very_good.png" id="8_v0s1l"]
+[ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://Wheel/wheel.tscn" id="9_5p1lm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylpcl"]
+shader = ExtResource("1_5yleq")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cx167"]
+
+[sub_resource type="Theme" id="Theme_n4eug"]
+default_font_size = 100
+
+[sub_resource type="FontVariation" id="FontVariation_dlksc"]
+base_font = ExtResource("5_dolsu")
+
+[node name="Menu" type="TextureRect"]
+material = SubResource("ShaderMaterial_ylpcl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_cx167")
+
+[node name="Button1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 204.0
+offset_right = 387.0
+offset_bottom = 300.0
+theme = ExtResource("2_ylpcl")
+text = "Start"
+icon_alignment = 1
+script = ExtResource("3_cx167")
+game_nav = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 27.0
+offset_right = 549.0
+offset_bottom = 246.0
+theme = SubResource("Theme_n4eug")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("FontVariation_dlksc")
+bbcode_enabled = true
+text = "Wheelzard"
+horizontal_alignment = 1
+
+[node name="Name of the Game" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -571.0
+offset_top = 35.0
+offset_right = -41.0
+offset_bottom = 254.0
+grow_horizontal = 0
+theme = SubResource("Theme_n4eug")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("FontVariation_dlksc")
+bbcode_enabled = true
+text = "The game"
+horizontal_alignment = 1
+
+[node name="Controls" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1144.0
+offset_top = 297.0
+offset_right = -614.0
+offset_bottom = 360.0
+grow_horizontal = 0
+theme = SubResource("Theme_n4eug")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("FontVariation_dlksc")
+theme_override_font_sizes/normal_font_size = 31
+bbcode_enabled = true
+text = "Controls:"
+horizontal_alignment = 1
+
+[node name="Controls2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1137.0
+offset_top = 365.0
+offset_right = -607.0
+offset_bottom = 619.0
+grow_horizontal = 0
+theme = SubResource("Theme_n4eug")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("FontVariation_dlksc")
+theme_override_font_sizes/normal_font_size = 26
+text = "WASD/ArrowKeys: selecting wheel
+space: confirm
+Tab/(\\ key): free spin
+"
+horizontal_alignment = 1
+
+[node name="Controls3" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -571.0
+offset_top = 211.0
+offset_right = -41.0
+offset_bottom = 447.0
+grow_horizontal = 0
+theme = SubResource("Theme_n4eug")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("FontVariation_dlksc")
+theme_override_font_sizes/normal_font_size = 31
+bbcode_enabled = true
+text = "arrange a spell by min/maxing the values in each wedge of the wheel. 
+Each enemy hates or likes each wedges. 
+Pay attention to the particles to deduce"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Good" type="Sprite2D" parent="."]
+position = Vector2(917.92, 550)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("5_hcwhg")
+
+[node name="Bad" type="Sprite2D" parent="."]
+position = Vector2(634, 550)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("6_5p1lm")
+
+[node name="VeryBad" type="Sprite2D" parent="."]
+position = Vector2(777, 550)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("7_1igrg")
+
+[node name="VeryGood" type="Sprite2D" parent="."]
+position = Vector2(1065.92, 550)
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("8_v0s1l")
+
+[node name="Wheel" parent="." instance=ExtResource("9_5p1lm")]
+offset_left = 513.0
+offset_top = 59.0
+offset_right = 813.0
+offset_bottom = 359.0
+script = null
+
+[connection signal="pressed" from="Button1" to="Button1" method="_on_pressed"]
