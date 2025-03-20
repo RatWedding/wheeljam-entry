@@ -49,6 +49,7 @@ func update_wheel_value(_current_value):
 
 # shows pass or fail UI if the wheel value is > or < 0
 func end_check(wheel_val):
+	
 	if wheel_val > 0:
 		$game_overs/pass.visible = true
 		_play_sound(success_sound)

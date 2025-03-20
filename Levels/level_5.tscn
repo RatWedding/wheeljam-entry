@@ -1,0 +1,110 @@
+[gd_scene load_steps=15 format=3 uid="uid://dnptvkgqfrb65"]
+
+[ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://Wheel/wheel.tscn" id="1_xagau"]
+[ext_resource type="PackedScene" uid="uid://b0r0rwy2dsnqs" path="res://Player/wheel_jam_hero.tscn" id="2_ytgun"]
+[ext_resource type="PackedScene" uid="uid://cssrngw6plg77" path="res://Enemies/Enemy5/Enemy5.tscn" id="3_hu0ol"]
+[ext_resource type="PackedScene" uid="uid://pwbg5j7m500q" path="res://Enemies/Enemy2/Enemy2.tscn" id="3_rpnhq"]
+[ext_resource type="PackedScene" uid="uid://bnw80nbdrql73" path="res://Enemies/Enemy1/Enemy1.tscn" id="4_hu0ol"]
+[ext_resource type="PackedScene" uid="uid://csbrotwcdris3" path="res://Enemies/Enemy4/Enemy4.tscn" id="5_m47b0"]
+[ext_resource type="PackedScene" uid="uid://datox4b37a0al" path="res://Enemies/Enemy3/Enemy3.tscn" id="6_m47b0"]
+[ext_resource type="PackedScene" uid="uid://c3vkk51m4cv4o" path="res://World/thekeep/the_keep.tscn" id="6_x7gsr"]
+[ext_resource type="Script" uid="uid://c3eqfiw05iaa1" path="res://Levels/Level1/TimerBar.gd" id="7_uk1uv"]
+[ext_resource type="Script" uid="uid://bx32vfie6ufes" path="res://Levels/Level1/health_bar.gd" id="8_25373"]
+[ext_resource type="Script" uid="uid://c043d48hnf4km" path="res://Levels/Level1/Spin_bar.gd" id="9_vybpl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_575r3"]
+sky_top_color = Color(0.0812634, 0.134257, 0.215515, 1)
+sky_horizon_color = Color(0.180326, 0.0600739, 0.125501, 1)
+ground_bottom_color = Color(0.209792, 0.15982, 0.166609, 1)
+ground_horizon_color = Color(0.516039, 0.438176, 0.476331, 1)
+
+[sub_resource type="Sky" id="Sky_rfktq"]
+sky_material = SubResource("ProceduralSkyMaterial_575r3")
+
+[sub_resource type="Environment" id="Environment_bgabs"]
+background_mode = 2
+sky = SubResource("Sky_rfktq")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Wheel" parent="." instance=ExtResource("1_xagau")]
+unique_name_in_owner = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="WheelJamHero" parent="." instance=ExtResource("2_ytgun")]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.10375, 0.511487, 3.61524)
+
+[node name="SpawnPoint1" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.17, 0.546458, 3.858)
+
+[node name="Enemy5" parent="SpawnPoint1" instance=ExtResource("3_hu0ol")]
+
+[node name="SpawnPoint2" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.173, 0.546458, 6.863)
+
+[node name="Enemy2" parent="SpawnPoint2" instance=ExtResource("3_rpnhq")]
+
+[node name="SpawnPoint3" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.173, 0.546458, 0.328)
+
+[node name="Enemy1" parent="SpawnPoint3" instance=ExtResource("4_hu0ol")]
+
+[node name="SpawnPoint4" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, 0.546458, 5.288)
+
+[node name="Enemy3s" parent="SpawnPoint4" instance=ExtResource("5_m47b0")]
+
+[node name="SpawnPoint5" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, 0.546458, 1.873)
+
+[node name="Enemy3" parent="SpawnPoint5" instance=ExtResource("6_m47b0")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.943182, 0.0893556, -0.320036, 5.54914e-09, 0.963163, 0.26892, 0.332276, -0.25364, 0.908438, -4.80983, 7.30755, 13.3931)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bgabs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.4
+shadow_enabled = true
+
+[node name="theKeep" parent="." instance=ExtResource("6_x7gsr")]
+transform = Transform3D(-1.955, 0, 1.70912e-07, 0, 1.955, 0, -1.70912e-07, 0, -1.955, 6.075, 0.705, -33.797)
+
+[node name="TimerBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -177.5
+offset_top = -98.0
+offset_right = 177.5
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("7_uk1uv")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 26.0
+offset_top = 243.0
+offset_right = 213.0
+offset_bottom = 270.0
+script = ExtResource("8_25373")
+
+[node name="SpinBar" type="ProgressBar" parent="."]
+offset_left = 26.0
+offset_top = 291.0
+offset_right = 213.0
+offset_bottom = 318.0
+script = ExtResource("9_vybpl")
