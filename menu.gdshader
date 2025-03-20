@@ -130,7 +130,7 @@ void fragment() {
     //COLOR.rgb = mix(vec3(0.9, 0.85, 0.47), COLOR.rgb, smoothstep(0.0,100.0, sun));
 	COLOR.rgb = mix(vec3(1.0)-vec3(0.7, 0.65, 0.27), COLOR.rgb, smoothstep(0.0,100.0, sun));
     float s = max(0.0001, sun);
-    float p = saturate(exp(-0.0001 * s * s));
+    float p = saturate(exp(-0.0001 *(5.0 + 3.0*sin(TIME))/3.0* s * s));
 
     //COLOR.rgb += 0.5 * mix(vec3(0.0), vec3(0.9, 0.85, 0.47), p);
 	COLOR.rgb -= 0.5 * mix(vec3(1.5),vec3(0.0)-vec3(0.7, 0.65, 0.27), p);
